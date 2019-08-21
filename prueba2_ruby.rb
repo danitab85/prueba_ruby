@@ -22,7 +22,7 @@ def students_average
 end
 
 def absents_student
-  students = read_alum('alumnos.csv')
+    students = read_alum('alumnos.csv')
   students.each do |student_info|
     sum = 0
     student_info.each_with_index do |student, index|
@@ -33,6 +33,18 @@ def absents_student
 end_line
 end
 
+def students_passed(grade = 5.0)
+  puts grade
+  students = read_alum('alumnos.csv')
+  students.each do |student_average|
+    sum = 0
+    student_average.each_with_index do |student, index|
+      sum += student.to_f unless index == 0
+    end
+    puts "Estudiante: #{student_average[0]} fue aprobado" if sum/(student_average.length - 1) > (grade)
+    end
+  end_line
+end
 
 option = 0
 while option != 4
@@ -49,7 +61,13 @@ while option != 4
   when 2
     puts absents_student
   when 3
-    puts students_passed(5.0)
+    puts 'Ingrese la nota de aprobación'
+    grade = gets.chomp.to_f
+    if grade != 0
+    puts students_passed (grade)
+    else
+    puts students_passed (5)
+    end
   when 4
     puts "¡Hasta pronto!"
   else
