@@ -21,6 +21,18 @@ def students_average
   end_line
 end
 
+def absents_student
+  students = read_alum('alumnos.csv')
+  students.each do |student_info|
+    sum = 0
+    student_info.each_with_index do |student, index|
+      sum += 1 if student == "A"
+    end
+  puts "Estudiante: #{student_info[0]} tiene #{sum} inasistencia(s)"
+  end
+end_line
+end
+
 
 option = 0
 while option != 4
