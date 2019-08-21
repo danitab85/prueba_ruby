@@ -9,6 +9,19 @@ def end_line
   puts "---------------------------------------------------------------------"
 end
 
+def students_average
+  students = read_alum('alumnos.csv')
+  students.each do |student_average|
+    sum = 0
+    student_average.each_with_index do |student, index|
+      sum += student.to_f unless index == 0
+    end
+    puts "Estudiante: #{student_average[0]} tiene un promedio de #{sum/(student_average.length-1)}"
+  end
+  end_line
+end
+
+
 option = 0
 while option != 4
   puts 'Ingresa una de las siguientes opciones: '
@@ -26,7 +39,7 @@ while option != 4
   when 3
     puts students_passed(5.0)
   when 4
-    puts "¡Vuelve pronto, que estés bien!"
+    puts "¡Hasta pronto!"
   else
     puts "Opción inválida: debes elegir entre 1 y 4."
   end
